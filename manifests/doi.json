@@ -1,7 +1,7 @@
 {
     "name": "doi",
     "env_var": "HL2SDKDOI",
-    "extension": "doi",
+    "extension": "2.doi",
     "code": 21,
     "define": "DOI",
     "steam": {

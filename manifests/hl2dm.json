@@ -1,7 +1,7 @@
 {
     "name": "hl2dm",
     "env_var": "HL2SDKHL2DM",
-    "extension": "hl2dm",
+    "extension": "2.hl2dm",
     "code": 7,
     "define": "HL2DM",
     "steam": {

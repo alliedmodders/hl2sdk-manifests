@@ -1,7 +1,7 @@
 {
     "name": "nucleardawn",
     "env_var": "HL2SDKND",
-    "extension": "nd",
+    "extension": "2.nd",
     "code": 14,
     "define": "NUCLEARDAWN",
     "steam": {

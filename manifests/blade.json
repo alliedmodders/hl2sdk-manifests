@@ -1,7 +1,7 @@
 {
     "name": "blade",
     "env_var": "HL2SDKBLADE",
-    "extension": "blade",
+    "extension": "2.blade",
     "code": 19,
     "define": "BLADE",
     "steam": {

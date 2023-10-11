@@ -1,7 +1,7 @@
 {
     "name": "dota",
     "env_var": "HL2SDKDOTA",
-    "extension": "dota",
+    "extension": "2.dota",
     "code": 24,
     "define": "DOTA",
     "platforms": {

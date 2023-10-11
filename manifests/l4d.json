@@ -1,7 +1,7 @@
 {
     "name": "l4d",
     "env_var": "HL2SDKL4D",
-    "extension": "l4d",
+    "extension": "2.l4d",
     "code": 13,
     "define": "LEFT4DEAD",
     "steam": {

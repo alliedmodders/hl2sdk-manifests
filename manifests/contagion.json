@@ -1,7 +1,7 @@
 {
     "name": "contagion",
     "env_var": "HL2SDKCONTAGION",
-    "extension": "contagion",
+    "extension": "2.contagion",
     "code": 15,
     "define": "CONTAGION",
     "steam": {

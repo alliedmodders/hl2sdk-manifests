@@ -1,7 +1,7 @@
 {
     "name": "insurgency",
     "env_var": "HL2SDKINSURGENCY",
-    "extension": "insurgency",
+    "extension": "2.insurgency",
     "code": 20,
     "define": "INSURGENCY",
     "steam": {

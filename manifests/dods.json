@@ -1,7 +1,7 @@
 {
     "name": "dods",
     "env_var": "HL2SDKDODS",
-    "extension": "dods",
+    "extension": "2.dods",
     "code": 8,
     "define": "DODS",
     "steam": {

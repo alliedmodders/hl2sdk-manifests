@@ -1,7 +1,7 @@
 {
     "name": "mcv",
     "env_var": "HL2SDKMCV",
-    "extension": "mcv",
+    "extension": "2.mcv",
     "code": 22,
     "define": "MCV",
     "steam": {

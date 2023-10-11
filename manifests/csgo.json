@@ -1,7 +1,7 @@
 {
     "name": "csgo",
     "env_var": "HL2SDKCSGO",
-    "extension": "csgo",
+    "extension": "2.csgo",
     "code": 23,
     "define": "CSGO",
     "steam": {

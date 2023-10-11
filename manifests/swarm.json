@@ -1,7 +1,7 @@
 {
     "name": "swarm",
     "env_var": "HL2SDK-SWARM",
-    "extension": "swarm",
+    "extension": "2.swarm",
     "code": 17,
     "define": "ALIENSWARM",
     "steam": {

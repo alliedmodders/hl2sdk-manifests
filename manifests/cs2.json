@@ -1,7 +1,7 @@
 {
     "name": "cs2",
     "env_var": "HL2SDKCS2",
-    "extension": "cs2",
+    "extension": "2.cs2",
     "code": 25,
     "define": "CS2",
     "platforms": {

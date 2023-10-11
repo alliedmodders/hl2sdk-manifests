@@ -1,7 +1,7 @@
 {
     "name": "episode1",
     "env_var": "HL2SDK",
-    "extension": "ep1",
+    "extension": "2.ep1",
     "code": 1,
     "define": "EPISODEONE",
     "steam": {

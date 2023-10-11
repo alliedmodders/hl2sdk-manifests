@@ -1,7 +1,7 @@
 {
     "name": "eye",
     "env_var": "HL2SDK-EYE",
-    "extension": "eye",
+    "extension": "2.eye",
     "code": 5,
     "define": "EYE",
     "steam": {

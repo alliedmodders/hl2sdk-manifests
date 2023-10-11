@@ -1,7 +1,7 @@
 {
     "name": "tf2",
     "env_var": "HL2SDKTF2",
-    "extension": "tf2",
+    "extension": "2.tf2",
     "code": 12,
     "define": "TF2",
     "steam": {

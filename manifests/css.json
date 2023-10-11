@@ -1,7 +1,7 @@
 {
     "name": "css",
     "env_var": "HL2SDKCSS",
-    "extension": "css",
+    "extension": "2.css",
     "code": 6,
     "define": "CSS",
     "steam": {

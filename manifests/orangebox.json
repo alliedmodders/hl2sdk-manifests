@@ -1,7 +1,7 @@
 {
     "name": "orangebox",
     "env_var": "HL2SDKOB",
-    "extension": "ep2",
+    "extension": "2.ep2",
     "code": 3,
     "define": "ORANGEBOX",
     "platforms": {
