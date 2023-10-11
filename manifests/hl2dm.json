@@ -2,7 +2,7 @@
     "name": "hl2dm",
     "env_var": "HL2SDKHL2DM",
     "extension": "hl2dm",
-    "code": "7",
+    "code": 7,
     "define": "HL2DM",
     "steam": {
         "app_id": 232370

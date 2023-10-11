@@ -2,7 +2,7 @@
     "name": "nucleardawn",
     "env_var": "HL2SDKND",
     "extension": "nd",
-    "code": "14",
+    "code": 14,
     "define": "NUCLEARDAWN",
     "steam": {
         "app_id": 111710

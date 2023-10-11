@@ -2,7 +2,7 @@
     "name": "blade",
     "env_var": "HL2SDKBLADE",
     "extension": "blade",
-    "code": "19",
+    "code": 19,
     "define": "BLADE",
     "steam": {
         "app_id": 228780

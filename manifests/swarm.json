@@ -2,7 +2,7 @@
     "name": "swarm",
     "env_var": "HL2SDK-SWARM",
     "extension": "swarm",
-    "code": "17",
+    "code": 17,
     "define": "ALIENSWARM",
     "steam": {
         "app_id": 582400

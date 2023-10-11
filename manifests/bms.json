@@ -2,7 +2,7 @@
     "name": "bms",
     "env_var": "HL2SDKBMS",
     "extension": "bms",
-    "code": "11",
+    "code": 11,
     "define": "BMS",
     "platforms": {
         "windows": [

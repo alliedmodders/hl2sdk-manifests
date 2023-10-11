@@ -2,7 +2,7 @@
     "name": "bgt",
     "env_var": "HL2SDK-BGT",
     "extension": "bgt",
-    "code": "4",
+    "code": 4,
     "define": "BLOODYGOODTIME",
     "platforms": {
         "windows": [

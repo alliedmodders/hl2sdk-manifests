@@ -2,7 +2,7 @@
     "name": "sdk2013",
     "env_var": "HL2SDK2013",
     "extension": "sdk2013",
-    "code": "9",
+    "code": 9,
     "define": "SDK2013",
     "steam": {
         "app_id": 317670

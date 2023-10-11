@@ -2,7 +2,7 @@
     "name": "csgo",
     "env_var": "HL2SDKCSGO",
     "extension": "csgo",
-    "code": "23",
+    "code": 23,
     "define": "CSGO",
     "steam": {
         "app_id": 740,

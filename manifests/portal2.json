@@ -2,7 +2,7 @@
     "name": "portal2",
     "env_var": "HL2SDKPORTAL2",
     "extension": "portal2",
-    "code": "18",
+    "code": 18,
     "define": "PORTAL2",
     "platforms": {},
     "source2": false,

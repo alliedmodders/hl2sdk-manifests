@@ -2,7 +2,7 @@
     "name": "dota",
     "env_var": "HL2SDKDOTA",
     "extension": "dota",
-    "code": "24",
+    "code": 24,
     "define": "DOTA",
     "platforms": {
         "windows": [

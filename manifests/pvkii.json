@@ -2,7 +2,7 @@
     "name": "pvkii",
     "env_var": "HL2SDKPVKII",
     "extension": "pvkii",
-    "code": "10",
+    "code": 10,
     "define": "PVKII",
     "steam": {
         "app_id": 17575

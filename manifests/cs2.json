@@ -2,7 +2,7 @@
     "name": "cs2",
     "env_var": "HL2SDKCS2",
     "extension": "cs2",
-    "code": "25",
+    "code": 25,
     "define": "CS2",
     "platforms": {
         "windows": [

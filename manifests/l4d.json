@@ -2,7 +2,7 @@
     "name": "l4d",
     "env_var": "HL2SDKL4D",
     "extension": "l4d",
-    "code": "13",
+    "code": 13,
     "define": "LEFT4DEAD",
     "steam": {
         "app_id": 510

@@ -2,7 +2,7 @@
     "name": "darkm",
     "env_var": "HL2SDK-DARKM",
     "extension": "darkm",
-    "code": "2",
+    "code": 2,
     "define": "DARKMESSIAH",
     "steam": {
         "app_id": 2145

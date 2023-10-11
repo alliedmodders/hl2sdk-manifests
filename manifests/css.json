@@ -2,7 +2,7 @@
     "name": "css",
     "env_var": "HL2SDKCSS",
     "extension": "css",
-    "code": "6",
+    "code": 6,
     "define": "CSS",
     "steam": {
         "app_id": 232330

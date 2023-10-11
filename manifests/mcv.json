@@ -2,7 +2,7 @@
     "name": "mcv",
     "env_var": "HL2SDKMCV",
     "extension": "mcv",
-    "code": "22",
+    "code": 22,
     "define": "MCV",
     "steam": {
         "app_id": 1136190

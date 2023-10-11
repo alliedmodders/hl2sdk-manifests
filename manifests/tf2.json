@@ -2,7 +2,7 @@
     "name": "tf2",
     "env_var": "HL2SDKTF2",
     "extension": "tf2",
-    "code": "12",
+    "code": 12,
     "define": "TF2",
     "steam": {
         "app_id": 232250

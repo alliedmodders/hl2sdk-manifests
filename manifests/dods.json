@@ -2,7 +2,7 @@
     "name": "dods",
     "env_var": "HL2SDKDODS",
     "extension": "dods",
-    "code": "8",
+    "code": 8,
     "define": "DODS",
     "steam": {
         "app_id": 232290

@@ -2,7 +2,7 @@
     "name": "insurgency",
     "env_var": "HL2SDKINSURGENCY",
     "extension": "insurgency",
-    "code": "20",
+    "code": 20,
     "define": "INSURGENCY",
     "steam": {
         "app_id": 17705
