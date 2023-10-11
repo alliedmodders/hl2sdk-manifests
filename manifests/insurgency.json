@@ -4,6 +4,9 @@
     "extension": "insurgency",
     "code": "20",
     "define": "INSURGENCY",
+    "steam": {
+        "app_id": 17705
+    },
     "platforms": {
         "windows": [
             "x86",

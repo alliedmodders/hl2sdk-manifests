@@ -4,6 +4,9 @@
     "extension": "pvkii",
     "code": "10",
     "define": "PVKII",
+    "steam": {
+        "app_id": 17575
+    },
     "platforms": {
         "windows": [
             "x86"

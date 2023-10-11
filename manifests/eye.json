@@ -4,6 +4,9 @@
     "extension": "eye",
     "code": "5",
     "define": "EYE",
+    "steam": {
+        "app_id": 91720
+    },
     "platforms": {
         "windows": [
             "x86"

@@ -4,6 +4,9 @@
     "extension": "blade",
     "code": "19",
     "define": "BLADE",
+    "steam": {
+        "app_id": 228780
+    },
     "platforms": {
         "windows": [
             "x86",

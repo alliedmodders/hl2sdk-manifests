@@ -4,6 +4,10 @@
     "extension": "csgo",
     "code": "23",
     "define": "CSGO",
+    "steam": {
+        "app_id": 740,
+        "login_required": true
+    },
     "platforms": {
         "windows": [
             "x86"

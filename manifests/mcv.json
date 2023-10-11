@@ -4,6 +4,9 @@
     "extension": "mcv",
     "code": "22",
     "define": "MCV",
+    "steam": {
+        "app_id": 1136190
+    },
     "platforms": {
         "windows": [
             "x86_64"

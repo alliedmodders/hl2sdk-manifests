@@ -4,6 +4,10 @@
     "extension": "contagion",
     "code": "15",
     "define": "CONTAGION",
+    "steam": {
+        "app_id": 238430,
+        "login_required": true
+    },
     "platforms": {
         "windows": [
             "x86"

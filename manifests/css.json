@@ -4,6 +4,9 @@
     "extension": "css",
     "code": "6",
     "define": "CSS",
+    "steam": {
+        "app_id": 232330
+    },
     "platforms": {
         "windows": [
             "x86"

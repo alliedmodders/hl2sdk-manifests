@@ -4,6 +4,9 @@
     "extension": "nd",
     "code": "14",
     "define": "NUCLEARDAWN",
+    "steam": {
+        "app_id": 111710
+    },
     "platforms": {
         "windows": [
             "x86"

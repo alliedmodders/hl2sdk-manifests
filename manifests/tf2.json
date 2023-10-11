@@ -4,6 +4,9 @@
     "extension": "tf2",
     "code": "12",
     "define": "TF2",
+    "steam": {
+        "app_id": 232250
+    },
     "platforms": {
         "windows": [
             "x86"

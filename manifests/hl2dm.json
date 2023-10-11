@@ -4,6 +4,9 @@
     "extension": "hl2dm",
     "code": "7",
     "define": "HL2DM",
+    "steam": {
+        "app_id": 232370
+    },
     "platforms": {
         "windows": [
             "x86"

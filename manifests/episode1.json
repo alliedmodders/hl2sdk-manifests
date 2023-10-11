@@ -4,6 +4,9 @@
     "extension": "ep1",
     "code": "1",
     "define": "EPISODEONE",
+    "steam": {
+        "app_id": 232250
+    },
     "platforms": {
         "windows": [
             "x86"

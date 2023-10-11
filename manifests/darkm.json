@@ -4,6 +4,9 @@
     "extension": "darkm",
     "code": "2",
     "define": "DARKMESSIAH",
+    "steam": {
+        "app_id": 2145
+    },
     "platforms": {
         "windows": [
             "x86"

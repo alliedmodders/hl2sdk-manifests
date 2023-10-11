@@ -4,6 +4,9 @@
     "extension": "doi",
     "code": "21",
     "define": "DOI",
+    "steam": {
+        "app_id": 462310
+    },
     "platforms": {
         "windows": [
             "x86"

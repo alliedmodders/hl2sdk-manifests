@@ -4,6 +4,9 @@
     "extension": "dods",
     "code": "8",
     "define": "DODS",
+    "steam": {
+        "app_id": 232290
+    },
     "platforms": {
         "windows": [
             "x86"

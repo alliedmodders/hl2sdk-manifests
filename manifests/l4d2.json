@@ -4,6 +4,9 @@
     "extension": "l4d2",
     "code": "16",
     "define": "LEFT4DEAD2",
+    "steam": {
+        "app_id": 222860
+    },
     "platforms": {
         "windows": [
             "x86"
