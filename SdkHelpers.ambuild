@@ -1,0 +1,54 @@
+# vim: set sts=2 ts=8 sw=2 tw=99 et ft=python:
+import json
+import os
+
+class SdkHelpers(object):
+  def __init__(SdkHelpers):
+    pass
+
+  @staticmethod
+  def shouldBuildSdk(sdk, cxx):
+    if cxx.target.platform in sdk['platforms']:
+      if cxx.target.arch in sdk['platforms'][cxx.target.platform]:
+        return True
+    return False
+
+  @staticmethod
+  def addLists(sdk, list_name, cxx):
+    result = SdkHelpers.getLists(sdk, list_name, cxx)
+    cxx_list = getattr(cxx, list_name)
+    cxx_list.extend(result)
+
+  @staticmethod
+  def getLists(sdk, list_name, cxx):
+    result = SdkHelpers.getListsImpl(sdk, list_name, cxx)
+    if Project in sdk:
+      result += SdkHelpers.getListsImpl(sdk[Project], list_name, cxx)
+    return result
+
+  @staticmethod
+  def getListsImpl(info, list_name, cxx):
+    result = []
+    if cxx.target.platform in info:
+      platform_info = info[cxx.target.platform]
+      result += platform_info.get(list_name, [])
+      if cxx.target.arch in platform_info:
+        arch_info = platform_info[cxx.target.arch]
+        result += arch_info.get(cxx.target.arch, [])
+    return result
+
+  @staticmethod
+  def getSdks(builder):
+    sdk_manifest_dir = os.path.join(builder.sourcePath, 'hl2sdk-manifests', 'manifests')
+
+    out = []
+    for sdk_manifest in os.listdir(sdk_manifest_dir):
+      sdk_name, _ = os.path.splitext(sdk_manifest)
+      sdk_manifest_path = os.path.join(sdk_manifest_dir, sdk_manifest)
+      with open(sdk_manifest_path, 'rt') as fp:
+        sdk = json.load(fp)
+        builder.AddConfigureFile(sdk_manifest_path)
+        out.append((sdk_name, sdk))
+    return out
+
+rvalue = SdkHelpers()

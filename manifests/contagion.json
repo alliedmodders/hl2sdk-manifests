@@ -1,0 +1,34 @@
+{
+    "name": "contagion",
+    "env_var": "HL2SDKCONTAGION",
+    "extension": "contagion",
+    "code": "15",
+    "define": "CONTAGION",
+    "platforms": {
+        "windows": [
+            "x86"
+        ]
+    },
+    "source2": false,
+    "include_paths": [
+        "public",
+        "public/engine",
+        "public/mathlib",
+        "public/vstdlib",
+        "public/tier0",
+        "public/tier1",
+        "public/game/server",
+        "game/shared",
+        "common"
+    ],
+    "windows": {
+        "x86": {
+            "lib_folder": "lib/public"
+        },
+        "libs": [
+            "tier0.lib",
+            "tier1.lib",
+            "vstdlib.lib"
+        ]
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "name": "episode1",
+    "env_var": "HL2SDK",
+    "extension": "ep1",
+    "code": "1",
+    "define": "EPISODEONE",
+    "platforms": {
+        "windows": [
+            "x86"
+        ],
+        "linux": [
+            "x86"
+        ]
+    },
+    "source2": false,
+    "include_paths": [
+        "public",
+        "public/engine",
+        "public/mathlib",
+        "public/vstdlib",
+        "public/tier0",
+        "public/tier1",
+        "public/dlls",
+        "game_shared"
+    ],
+    "linux": {
+        "x86": {
+            "postlink_libs": [
+                "tier1_i486.a"
+            ],
+            "lib_folder": "linux_sdk",
+            "dynamic_libs": [
+                "tier0_i486.so",
+                "vstdlib_i486.so"
+            ]
+        }
+    },
+    "windows": {
+        "x86": {
+            "lib_folder": "lib/public"
+        },
+        "libs": [
+            "tier0.lib",
+            "tier1.lib",
+            "vstdlib.lib"
+        ]
+    }
+}

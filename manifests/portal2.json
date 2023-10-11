@@ -1,0 +1,20 @@
+{
+    "name": "portal2",
+    "env_var": "HL2SDKPORTAL2",
+    "extension": "portal2",
+    "code": "18",
+    "define": "PORTAL2",
+    "platforms": {},
+    "source2": false,
+    "include_paths": [
+        "public",
+        "public/engine",
+        "public/mathlib",
+        "public/vstdlib",
+        "public/tier0",
+        "public/tier1",
+        "public/game/server",
+        "game/shared",
+        "common"
+    ]
+}

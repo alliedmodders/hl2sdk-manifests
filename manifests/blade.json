@@ -1,0 +1,72 @@
+{
+    "name": "blade",
+    "env_var": "HL2SDKBLADE",
+    "extension": "blade",
+    "code": "19",
+    "define": "BLADE",
+    "platforms": {
+        "windows": [
+            "x86",
+            "x86_64"
+        ],
+        "linux": [
+            "x86_64"
+        ]
+    },
+    "source2": false,
+    "include_paths": [
+        "public",
+        "public/engine",
+        "public/mathlib",
+        "public/vstdlib",
+        "public/tier0",
+        "public/tier1",
+        "public/game/server",
+        "game/shared",
+        "common"
+    ],
+    "metamod": {
+        "linux": {
+            "linkflags": [
+                "-lstdc++"
+            ]
+        }
+    },
+    "linux": {
+        "x86_64": {
+            "postlink_libs": [
+                "tier1.a",
+                "interfaces.a"
+            ],
+            "lib_folder": "lib/linux64",
+            "dynamic_libs": [
+                "libtier0.so",
+                "libvstdlib.so"
+            ]
+        },
+        "defines": [
+            "_GLIBCXX_USE_CXX11_ABI=0"
+        ]
+    },
+    "windows": {
+        "x86": {
+            "lib_folder": "lib/public"
+        },
+        "x86_64": {
+            "lib_folder": "lib/public/win64"
+        },
+        "defines": [
+            "_GLIBCXX_USE_CXX11_ABI=0"
+        ],
+        "libs": [
+            "tier0.lib",
+            "tier1.lib",
+            "vstdlib.lib",
+            "interfaces.lib",
+            "tier0.lib",
+            "tier1.lib",
+            "vstdlib.lib",
+            "interfaces.lib"
+        ]
+    }
+}

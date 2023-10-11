@@ -1,0 +1,72 @@
+{
+    "name": "sdk2013",
+    "env_var": "HL2SDK2013",
+    "extension": "sdk2013",
+    "code": "9",
+    "define": "SDK2013",
+    "platforms": {
+        "windows": [
+            "x86"
+        ],
+        "linux": [
+            "x86"
+        ],
+        "mac": [
+            "x86"
+        ]
+    },
+    "source2": false,
+    "include_paths": [
+        "public",
+        "public/engine",
+        "public/mathlib",
+        "public/vstdlib",
+        "public/tier0",
+        "public/tier1",
+        "public/game/server",
+        "game/shared",
+        "common"
+    ],
+    "linux": {
+        "defines": [
+            "NO_HOOK_MALLOC",
+            "NO_MALLOC_OVERRIDE"
+        ],
+        "x86": {
+            "postlink_libs": [
+                "tier1.a"
+            ],
+            "lib_folder": "lib/public/linux32",
+            "dynamic_libs": [
+                "libtier0_srv.so",
+                "libvstdlib_srv.so"
+            ]
+        }
+    },
+    "mac": {
+        "defines": [
+            "NO_HOOK_MALLOC",
+            "NO_MALLOC_OVERRIDE"
+        ],
+        "x86": {
+            "postlink_libs": [
+                "tier1.a"
+            ],
+            "lib_folder": "lib/public/osx32",
+            "dynamic_libs": [
+                "libtier0.dylib",
+                "libvstdlib.dylib"
+            ]
+        }
+    },
+    "windows": {
+        "x86": {
+            "lib_folder": "lib/public"
+        },
+        "libs": [
+            "tier0.lib",
+            "tier1.lib",
+            "vstdlib.lib"
+        ]
+    }
+}
