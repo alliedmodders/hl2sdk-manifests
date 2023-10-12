@@ -101,7 +101,7 @@ class SdkHelpers(object):
 
     if cxx.target.platform == 'linux':
       cxx.linkflags[0:0] = ['-lm']
-    elif compiler.target.platform == 'mac':
+    elif cxx.target.platform == 'mac':
       cxx.linkflags.append('-liconv')
 
     dynamic_libs = SdkHelpers.getLists(sdk, 'dynamic_libs', cxx)
