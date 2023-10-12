@@ -34,7 +34,7 @@ class SdkHelpers(object):
       result += platform_info.get(list_name, [])
       if cxx.target.arch in platform_info:
         arch_info = platform_info[cxx.target.arch]
-        result += arch_info.get(cxx.target.arch, [])
+        result += arch_info.get(list_name, [])
     return result
 
   @staticmethod
