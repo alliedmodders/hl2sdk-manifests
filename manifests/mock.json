@@ -52,7 +52,8 @@
                 "libtier0_client.so",
                 "libvstdlib_client.so"
             ]
-        }
+        },
+        "uses_system_cxxlib": false
     },
     "mac": {
         "x86_64": {
@@ -64,7 +65,8 @@
                 "libtier0.dylib",
                 "libvstdlib.dylib"
             ]
-        }
+        },
+        "cxxlib": "c++"
     },
     "windows": {
         "x86": {

@@ -39,7 +39,8 @@
                 "libtier0_srv.so",
                 "libvstdlib_srv.so"
             ]
-        }
+        },
+        "uses_system_cxxlib": false
     },
     "windows": {
         "x86": {

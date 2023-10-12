@@ -43,7 +43,8 @@
                 "libtier0_srv.so",
                 "libvstdlib_srv.so"
             ]
-        }
+        },
+        "uses_system_cxxlib": false
     },
     "mac": {
         "x86": {
@@ -67,7 +68,8 @@
                 "libtier0.dylib",
                 "libvstdlib.dylib"
             ]
-        }
+        },
+        "cxxlib": "c++"
     },
     "windows": {
         "x86": {

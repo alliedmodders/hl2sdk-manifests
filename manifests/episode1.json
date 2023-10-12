@@ -36,7 +36,8 @@
                 "tier0_i486.so",
                 "vstdlib_i486.so"
             ]
-        }
+        },
+        "uses_system_cxxlib": false
     },
     "windows": {
         "x86": {

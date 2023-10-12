@@ -51,4 +51,83 @@ class SdkHelpers(object):
         out.append((sdk_name, sdk))
     return out
 
+  @staticmethod
+  def configureCxx(context, binary, sdk):
+    cxx = binary.compiler
+
+    # Includes/defines.
+    cxx.defines += ['SOURCE_ENGINE={}'.format(sdk['code'])]
+
+    if sdk['name'] in ['sdk2013', 'bms', 'pvkii'] and cxx.like('gcc'):
+      # The 2013 SDK already has these in public/tier0/basetypes.h
+      rm_defines = [
+        'stricmp=strcasecmp',
+        '_stricmp=strcasecmp',
+        '_snprintf=snprintf',
+        '_vsnprintf=vsnprintf,'
+      ]
+      for rm_define in rm_defines:
+        if rm_define in cxx.defines:
+          cxx.defines.remove(rm_define)
+
+    if cxx.family == 'msvc':
+      cxx.defines += ['COMPILER_MSVC']
+      if cxx.target.arch == 'x86':
+        cxx.defines += ['COMPILER_MSVC32']
+      elif cxx.target.arch == 'x86_64':
+        cxx.defines += ['COMPILER_MSVC64']
+      
+      if cxx.version >= 1900:
+        cxx.linkflags += ['legacy_stdio_definitions.lib']
+    else:
+      cxx.defines += ['COMPILER_GCC']
+
+    if cxx.target.arch == 'x86_64':
+      cxx.defines += ['X64BITS', 'PLATFORM_64BITS']
+
+    SdkHelpers.addLists(sdk, 'defines', cxx)
+    SdkHelpers.addLists(sdk, 'linkflags', cxx)
+
+    for path in sdk['include_paths']:
+      cxx.cxxincludes += [os.path.join(sdk['path'], path)]
+
+    # Link steps.
+    lib_folder = sdk[cxx.target.platform][cxx.target.arch]['lib_folder']
+    lib_folder = os.path.join(sdk['path'], lib_folder)
+    for lib in SdkHelpers.getLists(sdk, 'libs', cxx):
+      cxx.linkflags += [os.path.join(sdk['path'], lib_folder, lib)]
+    for lib in SdkHelpers.getLists(sdk, 'postlink_libs', cxx):
+      cxx.postlink += [os.path.join(sdk['path'], lib_folder, lib)]
+
+    if cxx.target.platform == 'linux':
+      cxx.linkflags[0:0] = ['-lm']
+    elif compiler.target.platform == 'mac':
+      cxx.linkflags.append('-liconv')
+
+    dynamic_libs = SdkHelpers.getLists(sdk, 'dynamic_libs', cxx)
+    for library in dynamic_libs:
+      source_path = os.path.join(lib_folder, library)
+      output_path = os.path.join(binary.localFolder, library)
+
+      context.AddFolder(binary.localFolder)
+      output = context.AddSymlink(source_path, output_path)
+
+      cxx.weaklinkdeps += [output]
+      cxx.linkflags[0:0] = [library]
+
+    if cxx.target.platform == 'linux':
+      if sdk[cxx.target.platform]['uses_system_cxxlib']:
+        cxx.linkflags.remove('-static-libstdc++')
+        cxx.linkflags += ['-lstdc++']
+    elif cxx.target.platform == 'mac':
+      if sdk[cxx.target.platform]['cxxlib'] == 'stdc++':
+        # Switch libc++ to libstdc++ for protobuf linkage.
+        cxx.cxxflags.remove('-stdlib=libc++')
+        cxx.linkflags.remove('-stdlib=libc++')
+        cxx.linkflags.remove('-lc++')
+
+        cxx.cxxflags += ['-stdlib=libstdc++']
+        cxx.linkflags += ['-stdlib=libstdc++']
+        cxx.linkflags += ['-lstdc++']
+
 rvalue = SdkHelpers()

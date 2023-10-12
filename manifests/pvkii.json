@@ -41,7 +41,8 @@
                 "libtier0.so",
                 "libvstdlib.so"
             ]
-        }
+        },
+        "uses_system_cxxlib": false
     },
     "metamod": {
         "linux": {

@@ -49,7 +49,8 @@
         },
         "defines": [
             "_GLIBCXX_USE_CXX11_ABI=0"
-        ]
+        ],
+        "uses_system_cxxlib": true
     },
     "windows": {
         "x86": {

@@ -64,7 +64,8 @@
         },
         "defines": [
             "_GLIBCXX_USE_CXX11_ABI=0"
-        ]
+        ],
+        "uses_system_cxxlib": true
     },
     "mac": {
         "x86_64": {
@@ -80,7 +81,8 @@
         },
         "defines": [
             "_GLIBCXX_USE_CXX11_ABI=0"
-        ]
+        ],
+        "cxxlib": "stdc++"
     },
     "windows": {
         "x86": {

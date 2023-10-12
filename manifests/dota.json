@@ -34,7 +34,8 @@
             "dynamic_libs": [
                 "libtier0.so"
             ]
-        }
+        },
+        "uses_system_cxxlib": true
     },
     "windows": {
         "x86_64": {
