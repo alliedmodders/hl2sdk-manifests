@@ -4,9 +4,75 @@ import os
 
 
 class SdkHelpers(object):
+    def __init__(self):
+        self.sdks = {}
+        self.sdk_manifests = []
+        self.sdk_filter = None
+        self.find_sdk_path = None
+        self.sdk_targets = []
 
-    def __init__(SdkHelpers):
-        pass
+    # find_sdk_path must be set to use.
+    def findSdks(self, builder, cxx_list, sdk_list):
+        not_found = []
+        sdk_remaining = set(sdk_list)
+        for sdk_name, sdk in SdkHelpers.getSdks(builder):
+            self.sdk_manifests.append(sdk)
+            # Skip SDKs that weren't specified or are not supported.
+            if not self.shouldFindSdk(sdk, sdk_list):
+                continue
+            # Skip SDKs that won't build on any targets.
+            if not SdkHelpers.sdkHasBuildTargets(sdk, cxx_list):
+                continue
+
+            sdk_path = self.find_sdk_path(sdk_name)
+            if sdk_path is None:
+                if SdkHelpers.shouldRequireSdk(sdk_name, sdk_list):
+                    raise Exception('Could not find a valid path for {0}'.format(sdk_name))
+                not_found.append(sdk_name)
+                continue
+
+            sdk_remaining.discard(sdk_name)
+
+            sdk['path'] = sdk_path
+            self.sdks[sdk_name] = sdk
+
+            for cxx in cxx_list:
+                if SdkHelpers.shouldBuildSdk(sdk, cxx):
+                    self.sdk_targets += [(sdk, cxx)]
+
+        if 'present' in sdk_list:
+            for sdk in not_found:
+                print('Warning: hl2sdk-{} was not found, and will not be included in build.'.format(sdk))
+        elif len(sdk_remaining) and 'all' not in sdk_list:
+            for sdk in sdk_remaining:
+                print('Error: hl2sdk-{} was not found.'.format(sdk))
+            raise Exception('Missing hl2sdks: {}'.format(','.join(sdk_remaining)))
+
+        if not len(self.sdk_targets) and len(sdk_list):
+            raise Exception('No buildable SDKs were found, nothing to build.')
+
+    @staticmethod
+    def shouldRequireSdk(sdk_name, sdk_list):
+        if 'all' in sdk_list:
+            return sdk_name != 'mock'
+        if sdk_name in sdk_list:
+            return True
+        return 'present' in sdk_list
+
+    def shouldFindSdk(self, sdk, sdk_list):
+        # Remove SDKs that the project doesn't support.
+        if self.sdk_filter and not self.sdk_filter(sdk):
+            return False
+        if 'all' in sdk_list or 'present' in sdk_list:
+            return True
+        return sdk['name'] in sdk_list
+
+    @staticmethod
+    def sdkHasBuildTargets(sdk, cxx_list):
+        for cxx in cxx_list:
+            if SdkHelpers.shouldBuildSdk(sdk, cxx):
+                return True
+        return False
 
     @staticmethod
     def shouldBuildSdk(sdk, cxx):
