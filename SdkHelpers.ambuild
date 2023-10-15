@@ -2,132 +2,134 @@
 import json
 import os
 
+
 class SdkHelpers(object):
-  def __init__(SdkHelpers):
-    pass
 
-  @staticmethod
-  def shouldBuildSdk(sdk, cxx):
-    if cxx.target.platform in sdk['platforms']:
-      if cxx.target.arch in sdk['platforms'][cxx.target.platform]:
-        return True
-    return False
+    def __init__(SdkHelpers):
+        pass
 
-  @staticmethod
-  def addLists(sdk, list_name, cxx):
-    result = SdkHelpers.getLists(sdk, list_name, cxx)
-    cxx_list = getattr(cxx, list_name)
-    cxx_list.extend(result)
+    @staticmethod
+    def shouldBuildSdk(sdk, cxx):
+        if cxx.target.platform in sdk['platforms']:
+            if cxx.target.arch in sdk['platforms'][cxx.target.platform]:
+                return True
+        return False
 
-  @staticmethod
-  def getLists(sdk, list_name, cxx):
-    result = SdkHelpers.getListsImpl(sdk, list_name, cxx)
-    if Project in sdk:
-      result += SdkHelpers.getListsImpl(sdk[Project], list_name, cxx)
-    return result
+    @staticmethod
+    def addLists(sdk, list_name, cxx):
+        result = SdkHelpers.getLists(sdk, list_name, cxx)
+        cxx_list = getattr(cxx, list_name)
+        cxx_list.extend(result)
 
-  @staticmethod
-  def getListsImpl(info, list_name, cxx):
-    result = []
-    if cxx.target.platform in info:
-      platform_info = info[cxx.target.platform]
-      result += platform_info.get(list_name, [])
-      if cxx.target.arch in platform_info:
-        arch_info = platform_info[cxx.target.arch]
-        result += arch_info.get(list_name, [])
-    return result
+    @staticmethod
+    def getLists(sdk, list_name, cxx):
+        result = SdkHelpers.getListsImpl(sdk, list_name, cxx)
+        if Project in sdk:
+            result += SdkHelpers.getListsImpl(sdk[Project], list_name, cxx)
+        return result
 
-  @staticmethod
-  def getSdks(builder):
-    sdk_manifest_dir = os.path.join(builder.sourcePath, 'hl2sdk-manifests', 'manifests')
+    @staticmethod
+    def getListsImpl(info, list_name, cxx):
+        result = []
+        if cxx.target.platform in info:
+            platform_info = info[cxx.target.platform]
+            result += platform_info.get(list_name, [])
+            if cxx.target.arch in platform_info:
+                arch_info = platform_info[cxx.target.arch]
+                result += arch_info.get(list_name, [])
+        return result
 
-    out = []
-    for sdk_manifest in os.listdir(sdk_manifest_dir):
-      sdk_name, _ = os.path.splitext(sdk_manifest)
-      sdk_manifest_path = os.path.join(sdk_manifest_dir, sdk_manifest)
-      with open(sdk_manifest_path, 'rt') as fp:
-        sdk = json.load(fp)
-        builder.AddConfigureFile(sdk_manifest_path)
-        out.append((sdk_name, sdk))
-    return out
+    @staticmethod
+    def getSdks(builder):
+        sdk_manifest_dir = os.path.join(builder.sourcePath, 'hl2sdk-manifests',
+                                        'manifests')
 
-  @staticmethod
-  def configureCxx(context, binary, sdk):
-    cxx = binary.compiler
+        out = []
+        for sdk_manifest in os.listdir(sdk_manifest_dir):
+            sdk_name, _ = os.path.splitext(sdk_manifest)
+            sdk_manifest_path = os.path.join(sdk_manifest_dir, sdk_manifest)
+            with open(sdk_manifest_path, 'rt') as fp:
+                sdk = json.load(fp)
+                builder.AddConfigureFile(sdk_manifest_path)
+                out.append((sdk_name, sdk))
+        return out
 
-    # Includes/defines.
-    cxx.defines += ['SOURCE_ENGINE={}'.format(sdk['code'])]
+    @staticmethod
+    def configureCxx(context, binary, sdk):
+        cxx = binary.compiler
 
-    if sdk['name'] in ['sdk2013', 'bms', 'pvkii'] and cxx.like('gcc'):
-      # The 2013 SDK already has these in public/tier0/basetypes.h
-      rm_defines = [
-        'stricmp=strcasecmp',
-        '_stricmp=strcasecmp',
-        '_snprintf=snprintf',
-        '_vsnprintf=vsnprintf,'
-      ]
-      for rm_define in rm_defines:
-        if rm_define in cxx.defines:
-          cxx.defines.remove(rm_define)
+        # Includes/defines.
+        cxx.defines += ['SOURCE_ENGINE={}'.format(sdk['code'])]
 
-    if cxx.family == 'msvc':
-      cxx.defines += ['COMPILER_MSVC']
-      if cxx.target.arch == 'x86':
-        cxx.defines += ['COMPILER_MSVC32']
-      elif cxx.target.arch == 'x86_64':
-        cxx.defines += ['COMPILER_MSVC64']
-      
-      if cxx.version >= 1900:
-        cxx.linkflags += ['legacy_stdio_definitions.lib']
-    else:
-      cxx.defines += ['COMPILER_GCC']
+        if sdk['name'] in ['sdk2013', 'bms', 'pvkii'] and cxx.like('gcc'):
+            # The 2013 SDK already has these in public/tier0/basetypes.h
+            rm_defines = [
+                'stricmp=strcasecmp', '_stricmp=strcasecmp',
+                '_snprintf=snprintf', '_vsnprintf=vsnprintf,'
+            ]
+            for rm_define in rm_defines:
+                if rm_define in cxx.defines:
+                    cxx.defines.remove(rm_define)
 
-    if cxx.target.arch == 'x86_64':
-      cxx.defines += ['X64BITS', 'PLATFORM_64BITS']
+        if cxx.family == 'msvc':
+            cxx.defines += ['COMPILER_MSVC']
+            if cxx.target.arch == 'x86':
+                cxx.defines += ['COMPILER_MSVC32']
+            elif cxx.target.arch == 'x86_64':
+                cxx.defines += ['COMPILER_MSVC64']
 
-    SdkHelpers.addLists(sdk, 'defines', cxx)
-    SdkHelpers.addLists(sdk, 'linkflags', cxx)
+            if cxx.version >= 1900:
+                cxx.linkflags += ['legacy_stdio_definitions.lib']
+        else:
+            cxx.defines += ['COMPILER_GCC']
 
-    for path in sdk['include_paths']:
-      cxx.cxxincludes += [os.path.join(sdk['path'], path)]
+        if cxx.target.arch == 'x86_64':
+            cxx.defines += ['X64BITS', 'PLATFORM_64BITS']
 
-    # Link steps.
-    lib_folder = sdk[cxx.target.platform][cxx.target.arch]['lib_folder']
-    lib_folder = os.path.join(sdk['path'], lib_folder)
-    for lib in SdkHelpers.getLists(sdk, 'libs', cxx):
-      cxx.linkflags += [os.path.join(sdk['path'], lib_folder, lib)]
-    for lib in SdkHelpers.getLists(sdk, 'postlink_libs', cxx):
-      cxx.postlink += [os.path.join(sdk['path'], lib_folder, lib)]
+        SdkHelpers.addLists(sdk, 'defines', cxx)
+        SdkHelpers.addLists(sdk, 'linkflags', cxx)
 
-    if cxx.target.platform == 'linux':
-      cxx.linkflags[0:0] = ['-lm']
-    elif cxx.target.platform == 'mac':
-      cxx.linkflags.append('-liconv')
+        for path in sdk['include_paths']:
+            cxx.cxxincludes += [os.path.join(sdk['path'], path)]
 
-    dynamic_libs = SdkHelpers.getLists(sdk, 'dynamic_libs', cxx)
-    for library in dynamic_libs:
-      source_path = os.path.join(lib_folder, library)
-      output_path = os.path.join(binary.localFolder, library)
+        # Link steps.
+        lib_folder = sdk[cxx.target.platform][cxx.target.arch]['lib_folder']
+        lib_folder = os.path.join(sdk['path'], lib_folder)
+        for lib in SdkHelpers.getLists(sdk, 'libs', cxx):
+            cxx.linkflags += [os.path.join(sdk['path'], lib_folder, lib)]
+        for lib in SdkHelpers.getLists(sdk, 'postlink_libs', cxx):
+            cxx.postlink += [os.path.join(sdk['path'], lib_folder, lib)]
 
-      context.AddFolder(binary.localFolder)
-      output = context.AddSymlink(source_path, output_path)
+        if cxx.target.platform == 'linux':
+            cxx.linkflags[0:0] = ['-lm']
+        elif cxx.target.platform == 'mac':
+            cxx.linkflags.append('-liconv')
 
-      cxx.weaklinkdeps += [output]
-      cxx.linkflags[0:0] = [library]
+        dynamic_libs = SdkHelpers.getLists(sdk, 'dynamic_libs', cxx)
+        for library in dynamic_libs:
+            source_path = os.path.join(lib_folder, library)
+            output_path = os.path.join(binary.localFolder, library)
 
-    if cxx.target.platform == 'linux':
-      if sdk[cxx.target.platform]['uses_system_cxxlib']:
-        cxx.linkflags.remove('-static-libstdc++')
-        cxx.linkflags += ['-lstdc++']
-    elif cxx.target.platform == 'mac':
-      if sdk[cxx.target.platform]['cxxlib'] == 'stdc++':
-        # Switch libc++ to libstdc++ for protobuf linkage.
-        cxx.cxxflags.remove('-stdlib=libc++')
-        cxx.linkflags.remove('-stdlib=libc++')
-        cxx.linkflags.remove('-lc++')
+            context.AddFolder(binary.localFolder)
+            output = context.AddSymlink(source_path, output_path)
 
-        cxx.cxxflags += ['-stdlib=libstdc++']
-        cxx.linkflags += ['-stdlib=libstdc++']
-        cxx.linkflags += ['-lstdc++']
+            cxx.weaklinkdeps += [output]
+            cxx.linkflags[0:0] = [library]
+
+        if cxx.target.platform == 'linux':
+            if sdk[cxx.target.platform]['uses_system_cxxlib']:
+                cxx.linkflags.remove('-static-libstdc++')
+                cxx.linkflags += ['-lstdc++']
+        elif cxx.target.platform == 'mac':
+            if sdk[cxx.target.platform]['cxxlib'] == 'stdc++':
+                # Switch libc++ to libstdc++ for protobuf linkage.
+                cxx.cxxflags.remove('-stdlib=libc++')
+                cxx.linkflags.remove('-stdlib=libc++')
+                cxx.linkflags.remove('-lc++')
+
+                cxx.cxxflags += ['-stdlib=libstdc++']
+                cxx.linkflags += ['-stdlib=libstdc++']
+                cxx.linkflags += ['-lstdc++']
+
 
 rvalue = SdkHelpers()
