@@ -30,6 +30,7 @@
     "linux": {
         "x86_64": {
             "postlink_libs": [
+                "interfaces.a",
                 "tier1.a"
             ],
             "lib_folder": "lib/linux64",
