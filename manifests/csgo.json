@@ -42,24 +42,22 @@
     "linux": {
         "x86": {
             "postlink_libs": [
-                "tier1_i486.a",
-                "interfaces_i486.a"
+                "lib/linux/tier1_i486.a",
+                "lib/linux/interfaces_i486.a"
             ],
-            "lib_folder": "lib/linux",
             "dynamic_libs": [
-                "libtier0.so",
-                "libvstdlib.so"
+                "lib/linux/libtier0.so",
+                "lib/linux/libvstdlib.so"
             ]
         },
         "x86_64": {
             "postlink_libs": [
-                "tier1.a",
-                "interfaces.a"
+                "lib/linux64/tier1.a",
+                "lib/linux64/interfaces.a"
             ],
-            "lib_folder": "lib/linux64",
             "dynamic_libs": [
-                "libtier0_client.so",
-                "libvstdlib_client.so"
+                "lib/linux64/libtier0_client.so",
+                "lib/linux64/libvstdlib_client.so"
             ]
         },
         "defines": [
@@ -70,13 +68,12 @@
     "mac": {
         "x86_64": {
             "postlink_libs": [
-                "tier1.a",
-                "interfaces.a"
+                "lib/osx64/tier1.a",
+                "lib/osx64/interfaces.a"
             ],
-            "lib_folder": "lib/osx64",
             "dynamic_libs": [
-                "libtier0.dylib",
-                "libvstdlib.dylib"
+                "lib/osx64/libtier0.dylib",
+                "lib/osx64/libvstdlib.dylib"
             ]
         },
         "defines": [
@@ -86,16 +83,15 @@
     },
     "windows": {
         "x86": {
-            "lib_folder": "lib/public"
+            "libs": [
+                "lib/public/tier0.lib",
+                "lib/public/tier1.lib",
+                "lib/public/vstdlib.lib",
+                "lib/public/interfaces.lib"
+            ]
         },
         "defines": [
             "_GLIBCXX_USE_CXX11_ABI=0"
-        ],
-        "libs": [
-            "tier0.lib",
-            "tier1.lib",
-            "vstdlib.lib",
-            "interfaces.lib"
         ]
     }
 }

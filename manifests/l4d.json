@@ -37,12 +37,11 @@
         ],
         "x86": {
             "postlink_libs": [
-                "tier1_i486.a"
+                "lib/linux/tier1_i486.a"
             ],
-            "lib_folder": "lib/linux",
             "dynamic_libs": [
-                "libtier0.so",
-                "libvstdlib.so"
+                "lib/linux/libtier0.so",
+                "lib/linux/libvstdlib.so"
             ]
         },
         "uses_system_cxxlib": false
@@ -54,24 +53,22 @@
         ],
         "x86": {
             "postlink_libs": [
-                "tier1_i486.a"
+                "lib/mac/tier1_i486.a"
             ],
-            "lib_folder": "lib/mac",
             "dynamic_libs": [
-                "libtier0.dylib",
-                "libvstdlib.dylib"
+                "lib/mac/libtier0.dylib",
+                "lib/mac/libvstdlib.dylib"
             ]
         },
         "cxxlib": "c++"
     },
     "windows": {
         "x86": {
-            "lib_folder": "lib/public"
-        },
-        "libs": [
-            "tier0.lib",
-            "tier1.lib",
-            "vstdlib.lib"
-        ]
+            "libs": [
+                "lib/public/tier0.lib",
+                "lib/public/tier1.lib",
+                "lib/public/vstdlib.lib"
+            ]
+        }
     }
 }

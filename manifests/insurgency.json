@@ -35,13 +35,12 @@
     "linux": {
         "x86": {
             "postlink_libs": [
-                "tier1_i486.a",
-                "interfaces_i486.a"
+                "lib/linux/tier1_i486.a",
+                "lib/linux/interfaces_i486.a"
             ],
-            "lib_folder": "lib/linux",
             "dynamic_libs": [
-                "libtier0_srv.so",
-                "libvstdlib_srv.so"
+                "lib/linux/libtier0_srv.so",
+                "lib/linux/libvstdlib_srv.so"
             ]
         },
         "uses_system_cxxlib": false
@@ -49,44 +48,42 @@
     "mac": {
         "x86": {
             "postlink_libs": [
-                "tier1_i486.a",
-                "interfaces_i486.a"
+                "lib/mac/tier1_i486.a",
+                "lib/mac/interfaces_i486.a"
             ],
-            "lib_folder": "lib/mac",
             "dynamic_libs": [
-                "libtier0.dylib",
-                "libvstdlib.dylib"
+                "lib/mac/libtier0.dylib",
+                "lib/mac/libvstdlib.dylib"
             ]
         },
         "x86_64": {
             "postlink_libs": [
-                "tier1.a",
-                "interfaces.a"
+                "lib/osx64/tier1.a",
+                "lib/osx64/interfaces.a"
             ],
-            "lib_folder": "lib/osx64",
             "dynamic_libs": [
-                "libtier0.dylib",
-                "libvstdlib.dylib"
+                "lib/osx64/libtier0.dylib",
+                "lib/osx64/libvstdlib.dylib"
             ]
         },
         "cxxlib": "c++"
     },
     "windows": {
         "x86": {
-            "lib_folder": "lib/public"
+            "libs": [
+                "lib/public/tier0.lib",
+                "lib/public/tier1.lib",
+                "lib/public/vstdlib.lib",
+                "lib/public/interfaces.lib"
+            ]
         },
         "x86_64": {
-            "lib_folder": "lib/public/win64"
-        },
-        "libs": [
-            "tier0.lib",
-            "tier1.lib",
-            "vstdlib.lib",
-            "interfaces.lib",
-            "tier0.lib",
-            "tier1.lib",
-            "vstdlib.lib",
-            "interfaces.lib"
-        ]
+            "libs": [
+                "lib/public/win64/tier0.lib",
+                "lib/public/win64/tier1.lib",
+                "lib/public/win64/vstdlib.lib",
+                "lib/public/win64/interfaces.lib"
+            ]
+        }
     }
 }

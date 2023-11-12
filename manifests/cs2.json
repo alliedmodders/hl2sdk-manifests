@@ -14,6 +14,7 @@
     },
     "source2": true,
     "include_paths": [
+        "thirdparty/protobuf-3.21.8/src",
         "public",
         "public/engine",
         "public/mathlib",
@@ -27,24 +28,26 @@
     "linux": {
         "x86_64": {
             "postlink_libs": [
-                "tier1.a",
-                "interfaces.a"
+                "lib/linux64/tier1.a",
+                "lib/linux64/interfaces.a",
+                "lib/linux64/release/libprotobuf.a"
             ],
-            "lib_folder": "lib/linux64",
             "dynamic_libs": [
-                "libtier0.so"
+                "lib/linux64/libtier0.so"
             ]
         },
-        "uses_system_cxxlib": true
+        "uses_system_cxxlib": true,
+        "protoc_path": "devtools/bin/linux/protoc"
     },
     "windows": {
         "x86_64": {
-            "lib_folder": "lib/public/win64"
+            "libs": [
+                "lib/public/win64/2015/libprotobuf.lib",
+                "lib/public/win64/tier0.lib",
+                "lib/public/win64/tier1.lib",
+                "lib/public/win64/interfaces.lib"
+            ]
         },
-        "libs": [
-            "tier0.lib",
-            "tier1.lib",
-            "interfaces.lib"
-        ]
+        "protoc_path": "devtools/bin/protoc.exe"
     }
 }

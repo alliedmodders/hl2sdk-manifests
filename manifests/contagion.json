@@ -27,12 +27,11 @@
     ],
     "windows": {
         "x86": {
-            "lib_folder": "lib/public"
-        },
-        "libs": [
-            "tier0.lib",
-            "tier1.lib",
-            "vstdlib.lib"
-        ]
+            "libs": [
+                "lib/public/tier0.lib",
+                "lib/public/tier1.lib",
+                "lib/public/vstdlib.lib"
+            ]
+        }
     }
 }

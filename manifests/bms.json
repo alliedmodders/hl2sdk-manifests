@@ -31,26 +31,24 @@
         ],
         "x86": {
             "postlink_libs": [
-                "tier1.a",
-                "mathlib.a"
+                "lib/public/linux32/tier1.a",
+                "lib/public/linux32/mathlib.a"
             ],
-            "lib_folder": "lib/public/linux32",
             "dynamic_libs": [
-                "libtier0_srv.so",
-                "libvstdlib_srv.so"
+                "lib/public/linux32/libtier0_srv.so",
+                "lib/public/linux32/libvstdlib_srv.so"
             ]
         },
         "uses_system_cxxlib": false
     },
     "windows": {
         "x86": {
-            "lib_folder": "lib/public"
-        },
-        "libs": [
-            "tier0.lib",
-            "tier1.lib",
-            "vstdlib.lib",
-            "mathlib.lib"
-        ]
+            "libs": [
+                "lib/public/tier0.lib",
+                "lib/public/tier1.lib",
+                "lib/public/vstdlib.lib",
+                "lib/public/mathlib.lib"
+            ]
+        }
     }
 }
