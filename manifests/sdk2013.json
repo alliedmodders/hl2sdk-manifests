@@ -37,12 +37,11 @@
         ],
         "x86": {
             "postlink_libs": [
-                "tier1.a"
+                "lib/public/linux32/tier1.a"
             ],
-            "lib_folder": "lib/public/linux32",
             "dynamic_libs": [
-                "libtier0_srv.so",
-                "libvstdlib_srv.so"
+                "lib/public/linux32/libtier0_srv.so",
+                "lib/public/linux32/libvstdlib_srv.so"
             ]
         },
         "uses_system_cxxlib": false
@@ -54,24 +53,22 @@
         ],
         "x86": {
             "postlink_libs": [
-                "tier1.a"
+                "lib/public/osx32/tier1.a"
             ],
-            "lib_folder": "lib/public/osx32",
             "dynamic_libs": [
-                "libtier0.dylib",
-                "libvstdlib.dylib"
+                "lib/public/osx32/libtier0.dylib",
+                "lib/public/osx32/libvstdlib.dylib"
             ]
         },
         "cxxlib": "c++"
     },
     "windows": {
         "x86": {
-            "lib_folder": "lib/public"
-        },
-        "libs": [
-            "tier0.lib",
-            "tier1.lib",
-            "vstdlib.lib"
-        ]
+            "libs": [
+                "lib/public/tier0.lib",
+                "lib/public/tier1.lib",
+                "lib/public/vstdlib.lib"
+            ]
+        }
     }
 }

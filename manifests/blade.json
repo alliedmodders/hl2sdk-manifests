@@ -38,13 +38,12 @@
     "linux": {
         "x86_64": {
             "postlink_libs": [
-                "tier1.a",
-                "interfaces.a"
+                "lib/linux64/tier1.a",
+                "lib/linux64/interfaces.a"
             ],
-            "lib_folder": "lib/linux64",
             "dynamic_libs": [
-                "libtier0.so",
-                "libvstdlib.so"
+                "lib/linux64/libtier0.so",
+                "lib/linux64/libvstdlib.so"
             ]
         },
         "defines": [
@@ -54,23 +53,23 @@
     },
     "windows": {
         "x86": {
-            "lib_folder": "lib/public"
+            "libs": [
+                "lib/public/tier0.lib",
+                "lib/public/tier1.lib",
+                "lib/public/vstdlib.lib",
+                "lib/public/interfaces.lib"
+            ]
         },
         "x86_64": {
-            "lib_folder": "lib/public/win64"
+            "libs": [
+                "lib/public/win64/tier0.lib",
+                "lib/public/win64/tier1.lib",
+                "lib/public/win64/vstdlib.lib",
+                "lib/public/win64/interfaces.lib"
+            ]
         },
         "defines": [
             "_GLIBCXX_USE_CXX11_ABI=0"
-        ],
-        "libs": [
-            "tier0.lib",
-            "tier1.lib",
-            "vstdlib.lib",
-            "interfaces.lib",
-            "tier0.lib",
-            "tier1.lib",
-            "vstdlib.lib",
-            "interfaces.lib"
         ]
     }
 }

@@ -35,22 +35,20 @@
         ],
         "x86": {
             "postlink_libs": [
-                "tier1_i486.a"
+                "lib/linux/tier1_i486.a"
             ],
-            "lib_folder": "lib/linux",
             "dynamic_libs": [
-                "tier0_i486.so",
-                "vstdlib_i486.so"
+                "lib/linux/tier0_i486.so",
+                "lib/linux/vstdlib_i486.so"
             ]
         },
         "x86_64": {
             "postlink_libs": [
-                "tier1.a"
+                "lib/linux64/tier1.a"
             ],
-            "lib_folder": "lib/linux64",
             "dynamic_libs": [
-                "libtier0_client.so",
-                "libvstdlib_client.so"
+                "lib/linux64/libtier0_client.so",
+                "lib/linux64/libvstdlib_client.so"
             ]
         },
         "uses_system_cxxlib": false
@@ -58,30 +56,29 @@
     "mac": {
         "x86_64": {
             "postlink_libs": [
-                "tier1.a"
+                "lib/osx64/tier1.a"
             ],
-            "lib_folder": "lib/osx64",
             "dynamic_libs": [
-                "libtier0.dylib",
-                "libvstdlib.dylib"
+                "lib/osx64/libtier0.dylib",
+                "lib/osx64/libvstdlib.dylib"
             ]
         },
         "cxxlib": "c++"
     },
     "windows": {
         "x86": {
-            "lib_folder": "lib/public"
+            "libs": [
+                "lib/public/tier0.lib",
+                "lib/public/tier1.lib",
+                "lib/public/vstdlib.lib"
+            ]
         },
         "x86_64": {
-            "lib_folder": "lib/public/win64"
-        },
-        "libs": [
-            "tier0.lib",
-            "tier1.lib",
-            "vstdlib.lib",
-            "tier0.lib",
-            "tier1.lib",
-            "vstdlib.lib"
-        ]
+            "libs": [
+                "lib/public/win64/tier0.lib",
+                "lib/public/win64/tier1.lib",
+                "lib/public/win64/vstdlib.lib"
+            ]
+        }
     }
 }

@@ -2,6 +2,11 @@
 import json
 import os
 
+class SdkTarget(object):
+    def __init__(self, sdk, cxx, protoc):
+        self.sdk = sdk
+        self.cxx = cxx
+        self.protoc = protoc
 
 class SdkHelpers(object):
     def __init__(self):
@@ -38,7 +43,14 @@ class SdkHelpers(object):
 
             for cxx in cxx_list:
                 if SdkHelpers.shouldBuildSdk(sdk, cxx):
-                    self.sdk_targets += [(sdk, cxx)]
+                    protoc = None
+                    rel_protoc_path = sdk[cxx.target.platform].get('protoc_path', None)
+                    if rel_protoc_path:
+                        protoc_path = os.path.join(sdk['path'], rel_protoc_path)
+                        protoc = builder.DetectProtoc(path = protoc_path)
+                        for path in sdk['include_paths']:
+                            protoc.includes += [os.path.join(sdk['path'], path)]
+                    self.sdk_targets += [SdkTarget(sdk, cxx, protoc)]
 
         if 'present' in sdk_list:
             for sdk in not_found:
@@ -159,12 +171,10 @@ class SdkHelpers(object):
             cxx.cxxincludes += [os.path.join(sdk['path'], path)]
 
         # Link steps.
-        lib_folder = sdk[cxx.target.platform][cxx.target.arch]['lib_folder']
-        lib_folder = os.path.join(sdk['path'], lib_folder)
         for lib in SdkHelpers.getLists(sdk, 'libs', cxx):
-            cxx.linkflags += [os.path.join(sdk['path'], lib_folder, lib)]
+            cxx.linkflags += [os.path.join(sdk['path'], lib)]
         for lib in SdkHelpers.getLists(sdk, 'postlink_libs', cxx):
-            cxx.postlink += [os.path.join(sdk['path'], lib_folder, lib)]
+            cxx.postlink += [os.path.join(sdk['path'], lib)]
 
         if cxx.target.platform == 'linux':
             cxx.linkflags[0:0] = ['-lm']
@@ -173,14 +183,15 @@ class SdkHelpers(object):
 
         dynamic_libs = SdkHelpers.getLists(sdk, 'dynamic_libs', cxx)
         for library in dynamic_libs:
-            source_path = os.path.join(lib_folder, library)
-            output_path = os.path.join(binary.localFolder, library)
+            file_name = os.path.split(library)[1]
+            source_path = os.path.join(sdk['path'], library)
+            output_path = os.path.join(binary.localFolder, file_name)
 
             context.AddFolder(binary.localFolder)
             output = context.AddSymlink(source_path, output_path)
 
             cxx.weaklinkdeps += [output]
-            cxx.linkflags[0:0] = [library]
+            cxx.linkflags[0:0] = [file_name]
 
         if cxx.target.platform == 'linux':
             if sdk[cxx.target.platform]['uses_system_cxxlib']:
