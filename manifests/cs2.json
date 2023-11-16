@@ -36,6 +36,9 @@
                 "lib/linux64/libtier0.so"
             ]
         },
+        "defines": [
+            "_GLIBCXX_USE_CXX11_ABI=0"
+        ],
         "uses_system_cxxlib": true,
         "protoc_path": "devtools/bin/linux/protoc"
     },
