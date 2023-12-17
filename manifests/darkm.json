@@ -20,6 +20,7 @@
         "public/vstdlib",
         "public/tier0",
         "public/tier1",
+        "public/toolframework",
         "public/dlls",
         "game_shared"
     ],
