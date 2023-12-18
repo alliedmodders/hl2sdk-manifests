@@ -35,6 +35,7 @@
         ],
         "x86": {
             "postlink_libs": [
+                "lib/public/linux32/mathlib.a",
                 "lib/public/linux32/tier1.a"
             ],
             "dynamic_libs": [
@@ -54,6 +55,7 @@
     "windows": {
         "x86": {
             "libs": [
+                "lib/public/mathlib.lib",
                 "lib/public/tier0.lib",
                 "lib/public/tier1.lib",
                 "lib/public/vstdlib.lib"

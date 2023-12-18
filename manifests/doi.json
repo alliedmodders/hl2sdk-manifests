@@ -34,6 +34,7 @@
     "linux": {
         "x86": {
             "postlink_libs": [
+                "lib/linux/mathlib_i486.a",
                 "lib/linux/tier1_i486.a",
                 "lib/linux/interfaces_i486.a"
             ],
@@ -47,6 +48,7 @@
     "mac": {
         "x86": {
             "postlink_libs": [
+                "lib/mac/mathlib_i486.a",
                 "lib/mac/tier1_i486.a",
                 "lib/mac/interfaces_i486.a"
             ],
@@ -60,6 +62,7 @@
     "windows": {
         "x86": {
             "libs": [
+                "lib/public/mathlib.lib",
                 "lib/public/tier0.lib",
                 "lib/public/tier1.lib",
                 "lib/public/vstdlib.lib",

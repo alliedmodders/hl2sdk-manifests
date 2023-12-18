@@ -30,6 +30,7 @@
     "linux": {
         "x86": {
             "postlink_libs": [
+                "linux_sdk/mathlib_i486.a",
                 "linux_sdk/tier1_i486.a"
             ],
             "dynamic_libs": [
@@ -42,6 +43,7 @@
     "windows": {
         "x86": {
             "libs": [
+                "lib/public/mathlib.lib",
                 "lib/public/tier0.lib",
                 "lib/public/tier1.lib",
                 "lib/public/vstdlib.lib"

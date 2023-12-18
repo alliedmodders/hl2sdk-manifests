@@ -39,6 +39,7 @@
     "linux": {
         "x86_64": {
             "postlink_libs": [
+                "lib/linux64/mathlib.a",
                 "lib/linux64/tier1.a",
                 "lib/linux64/interfaces.a"
             ],
@@ -55,6 +56,7 @@
     "windows": {
         "x86": {
             "libs": [
+                "lib/public/mathlib.lib",
                 "lib/public/tier0.lib",
                 "lib/public/tier1.lib",
                 "lib/public/vstdlib.lib",
@@ -63,6 +65,7 @@
         },
         "x86_64": {
             "libs": [
+                "lib/public/win64/mathlib.lib",
                 "lib/public/win64/tier0.lib",
                 "lib/public/win64/tier1.lib",
                 "lib/public/win64/vstdlib.lib",
