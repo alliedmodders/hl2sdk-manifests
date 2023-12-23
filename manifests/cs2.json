@@ -21,8 +21,10 @@
         "public/vstdlib",
         "public/tier0",
         "public/tier1",
+        "public/entity2",
         "public/game/server",
         "game/shared",
+        "game/server",
         "common"
     ],
     "linux": {
