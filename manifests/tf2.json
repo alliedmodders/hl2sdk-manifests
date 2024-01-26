@@ -12,7 +12,8 @@
             "x86"
         ],
         "linux": [
-            "x86"
+            "x86",
+            "x86_64"
         ],
         "mac": [
             "x86"
@@ -44,6 +45,16 @@
             "dynamic_libs": [
                 "lib/linux/libtier0_srv.so",
                 "lib/linux/libvstdlib_srv.so"
+            ]
+        },
+        "x86_64": {
+            "postlink_libs": [
+                "lib/linux64/mathlib.a",
+                "lib/linux64/tier1.a"
+            ],
+            "dynamic_libs": [
+                "lib/linux64/libtier0_srv.so",
+                "lib/linux64/libvstdlib_srv.so"
             ]
         },
         "uses_system_cxxlib": false
