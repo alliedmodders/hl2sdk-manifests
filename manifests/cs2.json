@@ -42,7 +42,7 @@
         "defines": [
             "_GLIBCXX_USE_CXX11_ABI=0"
         ],
-        "uses_system_cxxlib": true,
+        "uses_system_cxxlib": false,
         "protoc_path": "devtools/bin/linux/protoc"
     },
     "windows": {

@@ -35,7 +35,7 @@
                 "lib/linux64/libtier0.so"
             ]
         },
-        "uses_system_cxxlib": true
+        "uses_system_cxxlib": false
     },
     "windows": {
         "x86_64": {
