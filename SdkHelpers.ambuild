@@ -119,8 +119,11 @@ class SdkHelpers(object):
 
     @staticmethod
     def getSdks(builder):
-        sdk_manifest_dir = os.path.join(builder.sourcePath, 'hl2sdk-manifests',
-                                        'manifests')
+        try:
+            # Requires new enough ambuild version for __file__ to be defined
+            sdk_manifest_dir = os.path.join(os.path.dirname(__file__), 'manifests')
+        except NameError:
+            sdk_manifest_dir = os.path.join(builder.sourcePath, 'hl2sdk-manifests', 'manifests')
 
         out = []
         for sdk_manifest in os.listdir(sdk_manifest_dir):
