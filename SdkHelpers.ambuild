@@ -69,7 +69,7 @@ class SdkHelpers(object):
             return sdk_name != 'mock'
         if sdk_name in sdk_list:
             return True
-        return 'present' in sdk_list
+        return 'present' not in sdk_list
 
     def shouldFindSdk(self, sdk, sdk_list):
         # Remove SDKs that the project doesn't support.
