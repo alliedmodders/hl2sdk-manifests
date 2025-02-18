@@ -139,7 +139,7 @@ class SdkHelpers(object):
         # Includes/defines.
         cxx.defines += ['SOURCE_ENGINE={}'.format(sdk['code'])]
 
-        if sdk['name'] in ['sdk2013', 'bms', 'pvkii'] and cxx.like('gcc'):
+        if sdk['name'] in ['sdk2013', 'bms', 'pvkii', 'tf2', 'css'] and cxx.like('gcc'):
             # The 2013 SDK already has these in public/tier0/basetypes.h
             rm_defines = [
                 'stricmp=strcasecmp', '_stricmp=strcasecmp',
@@ -175,6 +175,10 @@ class SdkHelpers(object):
             cxx.linkflags += [os.path.join(sdk['path'], lib)]
         for lib in SdkHelpers.getLists(sdk, 'postlink_libs', cxx):
             cxx.postlink += [os.path.join(sdk['path'], lib)]
+
+        # cflags
+        for cflag in SdkHelpers.getLists(sdk, 'cflags', cxx):
+            cxx.cflags += [cflag]
 
         if cxx.target.platform == 'linux':
             cxx.linkflags[0:0] = ['-lm']

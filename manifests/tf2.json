@@ -39,23 +39,25 @@
             "NO_MALLOC_OVERRIDE"
         ],
         "x86": {
+            "cflags": ["-march=pentium4", "-march=core2", "-msse2", "-mfpmath=sse"],
             "postlink_libs": [
-                "lib/linux/mathlib_i486.a",
-                "lib/linux/tier1_i486.a"
+                "lib/public/linux/mathlib_i486.a",
+                "lib/public/linux/tier1_i486.a"
             ],
             "dynamic_libs": [
-                "lib/linux/libtier0_srv.so",
-                "lib/linux/libvstdlib_srv.so"
+                "lib/public/linux/libtier0_srv.so",
+                "lib/public/linux/libvstdlib_srv.so"
             ]
         },
         "x86_64": {
+            "cflags": ["-march=nocona", "-march=core2"],
             "postlink_libs": [
-                "lib/linux64/mathlib.a",
-                "lib/linux64/tier1.a"
+                "lib/public/linux64/mathlib.a",
+                "lib/public/linux64/tier1.a"
             ],
             "dynamic_libs": [
-                "lib/linux64/libtier0_srv.so",
-                "lib/linux64/libvstdlib_srv.so"
+                "lib/public/linux64/libtier0_srv.so",
+                "lib/public/linux64/libvstdlib_srv.so"
             ]
         },
         "uses_system_cxxlib": false
