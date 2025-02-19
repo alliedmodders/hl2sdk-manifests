@@ -15,9 +15,6 @@
         "linux": [
             "x86",
             "x86_64"
-        ],
-        "mac": [
-            "x86"
         ]
     },
     "source2": false,
@@ -62,38 +59,21 @@
         },
         "uses_system_cxxlib": false
     },
-    "mac": {
-        "defines": [
-            "NO_HOOK_MALLOC",
-            "NO_MALLOC_OVERRIDE"
-        ],
-        "x86": {
-            "postlink_libs": [
-                "lib/mac/mathlib_i486.a",
-                "lib/mac/tier1_i486.a"
-            ],
-            "dynamic_libs": [
-                "lib/mac/libtier0.dylib",
-                "lib/mac/libvstdlib.dylib"
-            ]
-        },
-        "cxxlib": "c++"
-    },
     "windows": {
         "x86": {
             "libs": [
-                "lib/public/mathlib.lib",
-                "lib/public/tier0.lib",
-                "lib/public/tier1.lib",
-                "lib/public/vstdlib.lib"
+                "lib/public/x86/mathlib.lib",
+                "lib/public/x86/tier0.lib",
+                "lib/public/x86/tier1.lib",
+                "lib/public/x86/vstdlib.lib"
             ]
         },
         "x86_64": {
             "libs": [
-                "lib/public/win64/mathlib.lib",
-                "lib/public/win64/tier1.lib",
-                "lib/public/win64/tier0.lib",
-                "lib/public/win64/vstdlib.lib"
+                "lib/public/x64/mathlib.lib",
+                "lib/public/x64/tier1.lib",
+                "lib/public/x64/tier0.lib",
+                "lib/public/x64/vstdlib.lib"
             ]
         }
     }
