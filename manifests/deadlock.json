@@ -2,7 +2,7 @@
     "name": "deadlock",
     "env_var": "HL2SDKDEADLOCK",
     "extension": "2.deadlock",
-    "code": 26,
+    "code": 27,
     "define": "DEADLOCK",
     "platforms": {
         "windows": [
