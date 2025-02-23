@@ -141,6 +141,7 @@ class SdkHelpers(object):
 
         # Includes/defines.
         cxx.defines += ['SOURCE_ENGINE={}'.format(sdk['code'])]
+        cxx.defines += ['GAME_DLL']
 
         if sdk['name'] in ['sdk2013', 'bms', 'pvkii', 'tf2', 'css', 'dods', 'hl2dm'] and cxx.like('gcc'):
             # The 2013 SDK already has these in public/tier0/basetypes.h
