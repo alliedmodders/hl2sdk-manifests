@@ -15,7 +15,6 @@
         "public",
         "public/engine",
         "public/mathlib",
-        "public/vstdlib",
         "public/tier0",
         "public/tier1",
         "public/entity2",
