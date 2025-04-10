@@ -2,6 +2,9 @@
 import json
 import os
 
+def get_this_file_path():
+    return get_this_file_path.__code__.co_filename
+
 class SdkTarget(object):
     def __init__(self, sdk, cxx, protoc):
         self.sdk = sdk
@@ -123,7 +126,7 @@ class SdkHelpers(object):
             # Requires new enough ambuild version for __file__ to be defined
             sdk_manifest_dir = os.path.join(os.path.dirname(__file__), 'manifests')
         except NameError:
-            sdk_manifest_dir = os.path.join(builder.sourcePath, 'hl2sdk-manifests', 'manifests')
+            sdk_manifest_dir = os.path.join(os.path.dirname(get_this_file_path()), 'manifests')
 
         out = []
         for sdk_manifest in os.listdir(sdk_manifest_dir):
