@@ -33,7 +33,9 @@
     "linux": {
         "defines": [
             "NO_HOOK_MALLOC",
-            "NO_MALLOC_OVERRIDE"
+            "NO_MALLOC_OVERRIDE",
+            "HL2_DLL",
+            "HL2MP"
         ],
         "x86": {
             "cflags": ["-march=pentium4", "-march=core2", "-msse2", "-mfpmath=sse"],
@@ -60,6 +62,10 @@
         "uses_system_cxxlib": false
     },
     "windows": {
+        "defines": [
+            "HL2_DLL",
+            "HL2MP"
+        ],
         "x86": {
             "libs": [
                 "lib/public/x86/mathlib.lib",

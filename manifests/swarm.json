@@ -26,6 +26,9 @@
         "common"
     ],
     "windows": {
+        "defines": [
+            "INFESTED_DLL"
+        ],
         "x86": {
             "libs": [
                 "lib/public/mathlib.lib",

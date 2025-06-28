@@ -28,7 +28,8 @@
     "linux": {
         "defines": [
             "NO_HOOK_MALLOC",
-            "NO_MALLOC_OVERRIDE"
+            "NO_MALLOC_OVERRIDE",
+            "HL2_DLL"
         ],
         "x86": {
             "postlink_libs": [
@@ -43,6 +44,9 @@
         "uses_system_cxxlib": false
     },
     "windows": {
+        "defines": [
+            "HL2_DLL"
+        ],
         "x86": {
             "libs": [
                 "lib/public/tier0.lib",
