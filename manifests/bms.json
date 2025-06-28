@@ -29,7 +29,8 @@
         "defines": [
             "NO_HOOK_MALLOC",
             "NO_MALLOC_OVERRIDE",
-            "HL2_DLL"
+            "HL2_DLL",
+            "HL2MP"
         ],
         "x86": {
             "postlink_libs": [
@@ -45,7 +46,8 @@
     },
     "windows": {
         "defines": [
-            "HL2_DLL"
+            "HL2_DLL",
+            "HL2MP"
         ],
         "x86": {
             "libs": [
