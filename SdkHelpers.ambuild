@@ -9,12 +9,11 @@ class SdkLibBuilder(object):
     def __init__(self, sdk, name, cxx):
         self.targets = [cxx]
         self.libs = []
-        self.tag = '{0} - {1}'.format(sdk['name'], name)
+        self.sdk_name = sdk['name']
+        self.name = name
     def ConfigureLibrary(self, project, compiler, context, prefix = ''):
         name = prefix + project.name
-        if compiler.target.platform == 'linux' and compiler.target.arch == 'x86':
-            name += '_i486'
-        binary = project.Configure(compiler, name, '{0} - {1}'.format(self.tag, compiler.target.arch))
+        binary = project.Configure(compiler, '{0}_{1}'.format(self.sdk_name, name), '{0} - {1} - {2}'.format(self.sdk_name, self.name, compiler.target.arch))
         binary.compiler.cxxincludes += [
             os.path.join(context.currentSourcePath)
         ]
