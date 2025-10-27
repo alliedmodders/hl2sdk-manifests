@@ -206,7 +206,10 @@ class SdkHelpers(object):
             ]
             for rm_define in rm_defines:
                 if rm_define in cxx.defines:
-                    cxx.defines.remove(rm_define)
+                    try:
+                        cxx.defines.remove(rm_define)
+                    except ValueError:
+                        pass
 
         if cxx.family == 'msvc':
             cxx.defines += ['COMPILER_MSVC']
@@ -246,7 +249,10 @@ class SdkHelpers(object):
 
         if cxx.target.platform == 'linux':
             if sdk[cxx.target.platform]['uses_system_cxxlib']:
-                cxx.linkflags.remove('-static-libstdc++')
+                try:
+                    cxx.linkflags.remove('-static-libstdc++')
+                except ValueError:
+                    pass
                 cxx.linkflags += ['-lstdc++']
 
         if 'tier1' in sdk and cxx.target.arch in sdk['tier1']:
