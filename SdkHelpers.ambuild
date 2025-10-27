@@ -257,13 +257,15 @@ class SdkHelpers(object):
 
         if 'tier1' in sdk and cxx.target.arch in sdk['tier1']:
             task = sdk['tier1'][cxx.target.arch]
-            cxx.postlink += [os.path.join(context.buildPath, task.binary.path)]
-            cxx.linkdeps += [task.binary]
+            if task != None:
+                cxx.postlink += [os.path.join(context.buildPath, task.binary.path)]
+                cxx.linkdeps += [task.binary]
 
         if 'mathlib' in sdk and cxx.target.arch in sdk['mathlib']:
             task = sdk['mathlib'][cxx.target.arch]
-            cxx.postlink += [os.path.join(context.buildPath, task.binary.path)]
-            cxx.linkdeps += [task.binary]
+            if task != None:
+                cxx.postlink += [os.path.join(context.buildPath, task.binary.path)]
+                cxx.linkdeps += [task.binary]
 
 
 rvalue = SdkHelpers()
