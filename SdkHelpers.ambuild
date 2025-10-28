@@ -48,6 +48,9 @@ class SdkTarget(object):
 
     @staticmethod
     def findLibrary(context, sdk, cxx, name):
+        # Mock libs are currently unhandled (different ambuild scripts)
+        if sdk['name'] == 'mock':
+            return None
         cxx = cxx.clone()
         SdkHelpers.configureCxx(context, cxx, sdk)
         ambuilder = os.path.join(sdk['path'], name, 'AMBuilder')
@@ -214,9 +217,9 @@ class SdkHelpers(object):
         if cxx.family == 'msvc':
             cxx.defines += ['COMPILER_MSVC']
             if cxx.target.arch == 'x86':
-                cxx.defines += ['COMPILER_MSVC32']
+                cxx.defines += ['COMPILER_MSVC32', 'WIN32']
             elif cxx.target.arch == 'x86_64':
-                cxx.defines += ['COMPILER_MSVC64']
+                cxx.defines += ['COMPILER_MSVC64', 'WIN32', 'WIN64']
 
             if cxx.version >= 1900:
                 cxx.linkflags += ['legacy_stdio_definitions.lib']
