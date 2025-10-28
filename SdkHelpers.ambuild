@@ -29,9 +29,9 @@ class SdkTarget(object):
         rel_protoc_path = sdk[cxx.target.platform].get('protoc_path', None)
         if rel_protoc_path:
             protoc_path = os.path.join(sdk['path'], rel_protoc_path)
-            self.protoc = builder.DetectProtoc(path = protoc_path)
+            self.protoc = context.DetectProtoc(path = protoc_path)
             for path in sdk['include_paths']:
-                protoc.includes += [os.path.join(sdk['path'], path)]
+                self.protoc.includes += [os.path.join(sdk['path'], path)]
         # Find tier1
         tier1 = SdkTarget.findLibrary(context, sdk, cxx, 'tier1')
         # Find mathlib
