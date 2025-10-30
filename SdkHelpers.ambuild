@@ -56,7 +56,10 @@ class SdkTarget(object):
         if os.path.exists(ambuilder):
             ambuilder = os.path.abspath(ambuilder)
             libbuilders = SdkLibBuilder(sdk, name, cxx)
-            context.Build(os.path.relpath(ambuilder, context.sourcePath), { 'HL2SDK': libbuilders })
+            oldSource = context.cm.sourcePath
+            context.cm.sourcePath = os.path.dirname(ambuilder)
+            libcontext = context.Build('AMBuilder', { 'HL2SDK': libbuilders })
+            context.cm.sourcePath = oldSource
             if len(libbuilders.libs) != 1:
                 raise Exception('No lib found for {0}'.format(name))
             return libbuilders.libs[0]
