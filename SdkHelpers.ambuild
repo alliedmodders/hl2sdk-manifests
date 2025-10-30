@@ -7,16 +7,17 @@ def get_this_file_path():
 
 class SdkLibBuilder(object):
     def __init__(self, sdk, name, cxx):
-        self.targets = [cxx]
+        self.targets = [cxx.clone()]
         self.libs = []
-        self.sdk_name = sdk['name']
+        self.sdk = sdk
         self.name = name
     def ConfigureLibrary(self, project, compiler, context, prefix = ''):
         name = prefix + project.name
-        binary = project.Configure(compiler, '{0}_{1}'.format(self.sdk_name, name), '{0} - {1} - {2}'.format(self.sdk_name, self.name, compiler.target.arch))
+        binary = project.Configure(compiler, '{0}_{1}'.format(self.sdk['name'], name), '{0} - {1} - {2}'.format(self.sdk['name'], self.name, compiler.target.arch))
         binary.compiler.cxxincludes += [
             os.path.join(context.currentSourcePath)
         ]
+        SdkHelpers.configureCxx(context, binary, self.sdk)
         return binary
 
 
@@ -51,8 +52,6 @@ class SdkTarget(object):
         # Mock libs are currently unhandled (different ambuild scripts)
         if sdk['name'] == 'mock':
             return None
-        cxx = cxx.clone()
-        SdkHelpers.configureCxx(context, cxx, sdk)
         ambuilder = os.path.join(sdk['path'], name, 'AMBuilder')
         if os.path.exists(ambuilder):
             ambuilder = os.path.abspath(ambuilder)
@@ -196,7 +195,9 @@ class SdkHelpers(object):
             binary.compiler.linkdeps += [task.binary]
 
     @staticmethod
-    def configureCxx(context, cxx, sdk):
+    def configureCxx(context, binary, sdk):
+        cxx = binary.compiler
+
         # Includes/defines.
         cxx.defines += ['SOURCE_ENGINE={}'.format(sdk['code'])]
         cxx.defines += ['GAME_DLL', 'RAD_TELEMETRY_DISABLED']
@@ -238,10 +239,20 @@ class SdkHelpers(object):
         # Link steps.
         for lib in SdkHelpers.getLists(sdk, 'libs', cxx):
             cxx.linkflags += [os.path.join(sdk['path'], lib)]
-        for lib in SdkHelpers.getLists(sdk, 'dynamic_libs', cxx):
-            cxx.linkflags += [os.path.join(sdk['path'], lib)]
         for lib in SdkHelpers.getLists(sdk, 'postlink_libs', cxx):
             cxx.postlink += [os.path.join(sdk['path'], lib)]
+
+        dynamic_libs = SdkHelpers.getLists(sdk, 'dynamic_libs', cxx)
+        for library in dynamic_libs:
+            file_name = os.path.split(library)[1]
+            source_path = os.path.join(sdk['path'], library)
+            output_path = os.path.join(binary.localFolder, file_name)
+
+            context.AddFolder(binary.localFolder)
+            output = context.AddSymlink(source_path, output_path)
+
+            cxx.weaklinkdeps += [output]
+            cxx.linkflags[0:0] = [file_name]
 
         # cflags
         for cflag in SdkHelpers.getLists(sdk, 'cflags', cxx):
