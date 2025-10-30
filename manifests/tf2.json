@@ -36,12 +36,21 @@
             "NO_MALLOC_OVERRIDE",
             "TF_DLL"
         ],
+        "cflags": [
+            "-Wno-overloaded-virtual",
+            "-Wno-unused-function",
+            "-Wno-unknown-pragmas",
+            "-Wno-dangling-else",
+            "-Wno-unused-variable",
+            "-Wno-unused-private-field",
+            "-Wno-inconsistent-missing-override",
+            "-Wno-tautological-overlap-compare",
+            "-Wno-tautological-constant-out-of-range-compare",
+            "-Wno-undefined-bool-conversion",
+            "-fPIC"
+        ],
         "x86": {
             "cflags": ["-march=pentium4", "-march=core2", "-msse2", "-mfpmath=sse"],
-            "postlink_libs": [
-                "lib/public/linux/mathlib_i486.a",
-                "lib/public/linux/tier1_i486.a"
-            ],
             "dynamic_libs": [
                 "lib/public/linux/libtier0_srv.so",
                 "lib/public/linux/libvstdlib_srv.so"
@@ -49,10 +58,6 @@
         },
         "x86_64": {
             "cflags": ["-march=nocona", "-march=core2"],
-            "postlink_libs": [
-                "lib/public/linux64/mathlib.a",
-                "lib/public/linux64/tier1.a"
-            ],
             "dynamic_libs": [
                 "lib/public/linux64/libtier0_srv.so",
                 "lib/public/linux64/libvstdlib_srv.so"
@@ -66,16 +71,12 @@
         ],
         "x86": {
             "libs": [
-                "lib/public/x86/mathlib.lib",
                 "lib/public/x86/tier0.lib",
-                "lib/public/x86/tier1.lib",
                 "lib/public/x86/vstdlib.lib"
             ]
         },
         "x86_64": {
             "libs": [
-                "lib/public/x64/mathlib.lib",
-                "lib/public/x64/tier1.lib",
                 "lib/public/x64/tier0.lib",
                 "lib/public/x64/vstdlib.lib"
             ]
