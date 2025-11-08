@@ -9,12 +9,10 @@
     },
     "platforms": {
         "windows": [
-            "x86"
+            "x86",
+            "x86_64"
         ],
         "linux": [
-            "x86"
-        ],
-        "mac": [
             "x86"
         ]
     },
@@ -45,20 +43,6 @@
         },
         "uses_system_cxxlib": false
     },
-    "mac": {
-        "x86": {
-            "postlink_libs": [
-                "lib/mac/mathlib_i486.a",
-                "lib/mac/tier1_i486.a",
-                "lib/mac/interfaces_i486.a"
-            ],
-            "dynamic_libs": [
-                "lib/mac/libtier0.dylib",
-                "lib/mac/libvstdlib.dylib"
-            ]
-        },
-        "cxxlib": "c++"
-    },
     "windows": {
         "x86": {
             "libs": [
@@ -67,6 +51,15 @@
                 "lib/public/tier1.lib",
                 "lib/public/vstdlib.lib",
                 "lib/public/interfaces.lib"
+            ]
+        },
+        "x86_64": {
+            "libs": [
+                "lib/public/win64/mathlib.lib",
+                "lib/public/win64/tier0.lib",
+                "lib/public/win64/tier1.lib",
+                "lib/public/win64/vstdlib.lib",
+                "lib/public/win64/interfaces.lib"
             ]
         }
     }
