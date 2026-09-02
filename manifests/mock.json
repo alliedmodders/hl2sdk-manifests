@@ -40,8 +40,8 @@
                 "lib/linux/tier1_i486.a"
             ],
             "dynamic_libs": [
-                "lib/linux/tier0_i486.so",
-                "lib/linux/vstdlib_i486.so"
+                "lib/linux/libtier0.so",
+                "lib/linux/libvstdlib.so"
             ]
         },
         "x86_64": {
@@ -50,8 +50,8 @@
                 "lib/linux64/tier1.a"
             ],
             "dynamic_libs": [
-                "lib/linux64/libtier0_client.so",
-                "lib/linux64/libvstdlib_client.so"
+                "lib/linux64/libtier0.so",
+                "lib/linux64/libvstdlib.so"
             ]
         },
         "uses_system_cxxlib": false
