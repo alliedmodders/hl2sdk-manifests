@@ -49,6 +49,12 @@ class SdkTarget(object):
 
     @staticmethod
     def findLibrary(context, sdk, cxx, name):
+        # Source 2 sdks are currently on a grace period where they still link mathlib/etc manually
+        # AMBuild's visual studio solution file generation needs to be fixed before this check can be removed
+        # If unaware of the details ask @GAMMACASE or @Kenzzer
+        if sdk['source2']:
+            return None
+
         # Mock libs are currently unhandled (different ambuild scripts)
         if sdk['name'] == 'mock':
             return None
