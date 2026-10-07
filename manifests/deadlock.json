@@ -30,6 +30,9 @@
                 "lib/public/win64/mathlib.lib",
                 "lib/public/win64/tier0.lib",
                 "lib/public/win64/interfaces.lib"
+            ],
+            "steam_api_libs": [
+                "lib/public/win64/steam_api64.lib"
             ]
         },
         "protoc_path": "devtools/bin/protoc.exe"

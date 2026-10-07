@@ -295,4 +295,16 @@ class SdkHelpers(object):
                 cxx.linkdeps += [task.binary]
 
 
+    # The Steam API library is only linked into the binaries that ask for it:
+    # call this after configureCxx for a binary that uses it.
+    @staticmethod
+    def addSteamApi(binary, sdk):
+        cxx = binary.compiler
+        libs = SdkHelpers.getLists(sdk, 'steam_api_libs', cxx)
+        if not libs:
+            raise Exception('No Steam API library for {0} ({1})'.format(sdk['name'], cxx.target.arch))
+        for lib in libs:
+            cxx.postlink += [os.path.join(sdk['path'], lib)]
+
+
 rvalue = SdkHelpers()
