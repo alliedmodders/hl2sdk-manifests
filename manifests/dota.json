@@ -35,6 +35,9 @@
             ],
             "dynamic_libs": [
                 "lib/linux64/libtier0.so"
+            ],
+            "steam_api_libs": [
+                "lib/linux64/libsteam_api.so"
             ]
         },
         "defines": [
@@ -50,6 +53,9 @@
                 "lib/public/win64/mathlib.lib",
                 "lib/public/win64/tier0.lib",
                 "lib/public/win64/interfaces.lib"
+            ],
+            "steam_api_libs": [
+                "lib/public/win64/steam_api64.lib"
             ]
         },
         "protoc_path": "devtools/bin/protoc.exe"
