@@ -33,18 +33,23 @@ class SdkTarget(object):
             self.protoc = context.DetectProtoc(path = protoc_path)
             for path in sdk['include_paths']:
                 self.protoc.includes += [os.path.join(sdk['path'], path)]
-        # Find tier1
-        tier1 = SdkTarget.findLibrary(context, sdk, cxx, 'tier1')
-        # Find mathlib
-        mathlib = SdkTarget.findLibrary(context, sdk, cxx, 'mathlib')
 
-        # Only append the libs at the end, so they aren't found during the configureCxx step
-        if not 'tier1' in sdk :
-            sdk['tier1'] = {}
-        if not 'mathlib' in sdk :
-            sdk['mathlib'] = {}
-        sdk['tier1'][cxx.target.arch] = tier1
-        sdk['mathlib'][cxx.target.arch] = mathlib
+        for libname, path in SdkTarget.getHL2SDKLibs().items():
+            lib = SdkHelpers.findLibrary(context, sdk, cxx, path)
+            if not libname in sdk:
+                sdk[libname] = {}
+            sdk[libname][cxx.target.arch] = lib
+
+
+    @staticmethod
+    def getHL2SDKLibs():
+        return {
+            #Lib name: Path to AMBuild file within hl2sdk
+            "tier1": "tier1",
+            "mathlib": "mathlib",
+            "interfaces": "interfaces",
+            "libprotobuf": os.path.join('thirdparty', 'protobuf-3.21.8')
+        }
 
 
     @staticmethod
@@ -282,17 +287,12 @@ class SdkHelpers(object):
                     pass
                 cxx.linkflags += ['-lstdc++']
 
-        if 'tier1' in sdk and cxx.target.arch in sdk['tier1']:
-            task = sdk['tier1'][cxx.target.arch]
-            if task != None:
-                cxx.postlink += [os.path.join(context.buildPath, task.binary.path)]
-                cxx.linkdeps += [task.binary]
-
-        if 'mathlib' in sdk and cxx.target.arch in sdk['mathlib']:
-            task = sdk['mathlib'][cxx.target.arch]
-            if task != None:
-                cxx.postlink += [os.path.join(context.buildPath, task.binary.path)]
-                cxx.linkdeps += [task.binary]
+        for libname in SdkTarget.getHL2SDKLibs().keys():
+            if libname in sdk and cxx.target.arch in sdk[libname]:
+                task = sdk[libname][cxx.target.arch]
+                if task != None:
+                    cxx.postlink += [os.path.join(context.buildPath, task.binary.path)]
+                    cxx.linkdeps += [task.binary]
 
 
 rvalue = SdkHelpers()
