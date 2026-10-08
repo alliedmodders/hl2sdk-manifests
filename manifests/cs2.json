@@ -51,6 +51,9 @@
                 "lib/public/win64/interfaces.lib"
             ]
         },
+        "defines": [
+            "_ITERATOR_DEBUG_LEVEL=0"
+        ],
         "protoc_path": "devtools/bin/protoc.exe"
     }
 }
