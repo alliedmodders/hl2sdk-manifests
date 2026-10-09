@@ -35,7 +35,7 @@ class SdkTarget(object):
                 self.protoc.includes += [os.path.join(sdk['path'], path)]
 
         for libname, path in SdkTarget.getHL2SDKLibs().items():
-            lib = SdkHelpers.findLibrary(context, sdk, cxx, path)
+            lib = SdkTarget.findLibrary(context, sdk, cxx, path)
             if not libname in sdk:
                 sdk[libname] = {}
             sdk[libname][cxx.target.arch] = lib
