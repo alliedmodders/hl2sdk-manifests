@@ -16,7 +16,6 @@
         "public/engine",
         "public/mathlib",
         "public/tier0",
-        "public/tier1",
         "public/entity2",
         "game/shared",
         "game/server",
