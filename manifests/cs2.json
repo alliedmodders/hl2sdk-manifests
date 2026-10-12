@@ -16,12 +16,11 @@
     "include_paths": [
         "thirdparty/protobuf-3.21.8/src",
         "public",
-        "public/engine",
+        "public/engine2",
         "public/mathlib",
         "public/tier0",
         "public/entity2",
         "game/shared",
-        "game/server",
         "common"
     ],
     "linux": {
