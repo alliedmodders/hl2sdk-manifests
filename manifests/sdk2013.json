@@ -36,6 +36,9 @@
             "NO_HOOK_MALLOC",
             "NO_MALLOC_OVERRIDE"
         ],
+		"cflags": [
+            "-Wno-deprecated-volatile"
+        ],
         "x86": {
             "postlink_libs": [
                 "lib/public/linux32/mathlib.a",

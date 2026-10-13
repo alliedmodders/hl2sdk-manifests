@@ -50,6 +50,9 @@
             "-Wno-undefined-bool-conversion",
             "-Wno-reorder-ctor",
             "-Wno-nontrivial-memcall",
+            "-Wno-sync-alignment",
+            "-Wno-deprecated-volatile",
+            "-Wno-deprecated-anon-enum-enum-conversion",
             "-fPIC"
         ],
         "x86": {

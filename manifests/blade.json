@@ -37,6 +37,9 @@
         }
     },
     "linux": {
+		"cflags": [
+            "-Wno-deprecated-volatile"
+        ],
         "x86_64": {
             "postlink_libs": [
                 "lib/linux64/mathlib.a",
