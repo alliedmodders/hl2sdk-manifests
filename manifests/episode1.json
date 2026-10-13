@@ -28,6 +28,9 @@
         "game_shared"
     ],
     "linux": {
+		"cflags": [
+            "-Wno-deprecated-volatile"
+        ],
         "x86": {
             "postlink_libs": [
                 "linux_sdk/mathlib_i486.a",

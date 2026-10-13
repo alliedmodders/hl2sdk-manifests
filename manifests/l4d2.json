@@ -33,6 +33,10 @@
             "NO_HOOK_MALLOC",
             "NO_MALLOC_OVERRIDE"
         ],
+		"cflags": [
+            "-Wno-undefined-bool-conversion",
+            "-Wno-nontrivial-memcall"
+        ],
         "x86": {
             "cflags": [
                 "-march=pentium4",

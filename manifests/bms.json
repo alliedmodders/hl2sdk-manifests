@@ -26,6 +26,9 @@
         "common"
     ],
     "linux": {
+		"cflags": [
+            "-Wno-deprecated-volatile"
+        ],
         "defines": [
             "NO_HOOK_MALLOC",
             "NO_MALLOC_OVERRIDE",

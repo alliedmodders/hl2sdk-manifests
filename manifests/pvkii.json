@@ -35,7 +35,12 @@
             "NO_HOOK_MALLOC",
             "NO_MALLOC_OVERRIDE"
         ],
-        "cflags": ["-fPIC"],
+        "cflags": [
+            "-Wno-tautological-constant-out-of-range-compare",
+            "-Wno-undefined-bool-conversion",
+            "-Wno-nontrivial-memcall",
+            "-fPIC"
+        ],
         "cxxflags": ["-std=c++17"],
         "x86": {
             "cflags": ["-march=pentium4", "-march=core2", "-msse2", "-mfpmath=sse"],
