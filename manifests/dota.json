@@ -25,6 +25,9 @@
     ],
     "linux": {
         "x86_64": {
+			"cflags": [
+				"-mcx16"
+			],
             "postlink_libs": [
                 "lib/linux64/mathlib.a",
                 "lib/linux64/interfaces.a",
