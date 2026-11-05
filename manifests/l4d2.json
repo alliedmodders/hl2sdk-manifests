@@ -35,7 +35,8 @@
         ],
 		"cflags": [
             "-Wno-undefined-bool-conversion",
-            "-Wno-nontrivial-memcall"
+            "-Wno-nontrivial-memcall",
+            "-fPIC"
         ],
         "x86": {
             "cflags": [
