@@ -18,9 +18,6 @@ class SdkLibBuilder(object):
             os.path.join(context.currentSourcePath)
         ]
         SdkHelpers.configureCxx(context, binary, self.sdk)
-        # HACKHACK
-        if self.sdk['name'] == 'outbreak' and self.name == 'tier1':
-            binary.compiler.defines += ['LOGGING_MODULE_NAME="{}"'.format(Project)]
         return binary
 
 
@@ -253,19 +250,11 @@ class SdkHelpers(object):
         for path in sdk['include_paths']:
             cxx.cxxincludes += [os.path.join(sdk['path'], path)]
 
-        replaced_libs = set()
-        for name in ('tier1', 'mathlib'):
-            if sdk.get(name, {}).get(cxx.target.arch) is not None:
-                replaced_libs.update((name + '.lib', name + '.a',
-                                      name + '_i486.a', 'lib' + name + '.a'))
-
         # Link steps.
         for lib in SdkHelpers.getLists(sdk, 'libs', cxx):
-            if os.path.basename(lib).lower() not in replaced_libs:
-                cxx.linkflags += [os.path.join(sdk['path'], lib)]
+            cxx.linkflags += [os.path.join(sdk['path'], lib)]
         for lib in SdkHelpers.getLists(sdk, 'postlink_libs', cxx):
-            if os.path.basename(lib).lower() not in replaced_libs:
-                cxx.postlink += [os.path.join(sdk['path'], lib)]
+            cxx.postlink += [os.path.join(sdk['path'], lib)]
 
         dynamic_libs = SdkHelpers.getLists(sdk, 'dynamic_libs', cxx)
         for library in dynamic_libs:
